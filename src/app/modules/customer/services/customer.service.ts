@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { StorageService } from '../../../auth/services/storage/storage.service';
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'https://soft-dulci-wathila-5310731b.koyeb.app';
 
 @Injectable({
   providedIn: 'root'
