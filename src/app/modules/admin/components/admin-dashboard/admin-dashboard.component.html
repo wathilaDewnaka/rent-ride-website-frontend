@@ -1,0 +1,38 @@
+<div class="bg-white min-vh-100" style="margin-top: 130px;">
+  <nz-spin [nzSpinning]="isSpinning" nzSize="large" nzTip="Working..." style="z-index: 0;">
+    <div class="container pt-3">
+      <div class="row mt-2">
+        <div class="col-12">
+          <div *ngFor="let car of cars" class="d-flex mb-4 border rounded p-3 shadow-sm flex-column flex-md-row">
+            <div class="me-3 mb-2 mb-md-0">
+              <img class="img-fluid rounded" style="height: 240px; width: 300px;" [src]="car.processedImg" alt="Car Image" />
+            </div>
+            <div class="flex-grow-1">
+              <h2 class="fw-bolder mb-2">
+                {{ car.brand }} - {{ car.name }}
+              </h2>
+              <p class="mb-3">{{ car.description }}</p>
+              <hr />
+              <h5 class="mb-3">
+                ID: <strong>{{ car.id }}</strong> - Price: <strong>${{ car.price }}</strong> - Color: <strong>{{ car.color }}</strong> - Transmission: <strong>{{ car.transmission }}</strong> - Type: <strong>{{ car.type }}</strong> - Year: <strong>{{ car.year | date: 'yyyy' }}</strong>
+              </h5>
+              <hr />
+              <div class="d-flex justify-content-end">
+                <button 
+                  class="btn btn-danger me-2 d-flex align-items-center text-center" 
+                  (click)="deleteCar(car.id)"> Delete
+                </button>
+
+                <a 
+                  class="btn btn-primary d-flex align-items-center text-center" 
+                  [routerLink]="['car', car.id]">
+                  Update Car
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nz-spin>
+</div>

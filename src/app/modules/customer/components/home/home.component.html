@@ -1,0 +1,248 @@
+<div>
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="">
+                        <h1 class="fw-bold mb-3">RentRide Car Rental <br/><span style="color: orangered;" class="mb-3">Service</span></h1>
+
+                        <p class="mt-2">RentRide is your premier online platform for car rentals, offering a seamless and user-friendly experience. Whether you need a compact car for city drives or a luxury vehicle for special occasions, RentRide provides a diverse fleet, competitive rates, and exceptional customer service to meet all your transportation needs.</p>
+
+                        <a routerLink="/customer/cars">
+                            <button class="mt-2 rounded fw-bold" style="height: 50px; width: 130px; border: none; background: orangered; color: white;">Explore</button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>
+                        <img src="../../../../assets/car.png" style="height: 350px; max-width: 650px; width: 100%;"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="work pt-5" style="background-color: whitesmoke;">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="fw-bold">How it <span style="color: orangered;">Works</span></h2>
+                <p>You just need to follow three easy steps to book a car with RentRide !</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-3 rounded mx-4 d-flex flex-column align-items-center justify-content-center my-3 box" style="background-color: white;">
+                  <div class="text-center py-5">
+                    <i class="bi bi-geo-alt rounded" style="font-size: 22px;"></i>
+                    <h5 class="mt-4 fw-bold mb-3">Choose Desired Location</h5>
+                    <p>Choose the desired location and plan your destination days.</p>
+                  </div>
+                </div>
+                <div class="col-md-3 rounded mx-4 d-flex flex-column align-items-center justify-content-center my-3 box" style="background-color: white;">
+                  <div class="text-center py-5">
+                    <i class="bi bi-bookmarks-fill rounded" style="font-size: 22px;"></i>
+                    <h5 class="mt-4 fw-bold mb-3">Visit Our Website</h5>
+                    <p>Visit our website and chose car, then send a booking request to our management</p>
+                  </div>
+                </div>
+                <div class="col-md-3 rounded mx-4 d-flex flex-column align-items-center justify-content-center my-3 box" style="background-color: white;">
+                  <div class="text-center py-5">
+                    <i class="bi bi-car-front rounded" style="font-size: 22px;"></i>
+                    <h5 class="mt-4 fw-bold mb-3">Get the Car</h5>
+                    <p>Once appproved, collect your car by paying the amount to our nearest branch</p>
+                  </div>
+                </div>
+              </div>              
+    </div>
+
+    <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Searching...">
+    <div class="search p-4 bg-light rounded shadow-sm mx-auto flex flex-wrap mt-5"  style="background-color: rgb(230, 229, 229);">
+        <div class="text-center my-3">
+            <h2 class="fw-bold">Search Cars with <br/><span style="color: orangered;">RentRide</span></h2>
+            <p class="mt-3">Simply enter the details !</p>
+        </div>
+
+        <form nz-form [formGroup]="searchCarForm" (ngSubmit)="searchCar()">
+            <div class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <nz-form-item>
+                        <nz-form-label nzFor="brand">Brand</nz-form-label>
+                        <nz-form-control nzErrorTip="This Input Is Required!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Brand" formControlName="brand">
+                                <nz-option *ngFor="let brand of listOfBrands" nzLabel="{{brand}}" nzValue="{{brand}}">
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+    
+                <div class="col-md-3">
+                    <nz-form-item>
+                        <nz-form-label nzFor="type">Type</nz-form-label>
+                        <nz-form-control nzErrorTip="This Input Is Required!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Type" formControlName="type">
+                                <nz-option *ngFor="let type of listOfType" nzLabel="{{type}}" nzValue="{{type}}">
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+    
+                <div class="col-md-3">
+                    <nz-form-item>
+                        <nz-form-label nzFor="color">Color</nz-form-label>
+                        <nz-form-control nzErrorTip="This Input Is Required!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Color" formControlName="color">
+                                <nz-option *ngFor="let color of listOfColor" nzLabel="{{color}}" nzValue="{{color}}">
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+    
+                <div class="col-md-3">
+                    <nz-form-item>
+                        <nz-form-label nzFor="transmission">Transmission</nz-form-label>
+                        <nz-form-control nzErrorTip="This Input Is Required!">
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a Transmission" formControlName="transmission">
+                                <nz-option *ngFor="let transmission of listOfTransmission" nzLabel="{{transmission}}" nzValue="{{transmission}}">
+                                </nz-option>
+                            </nz-select>
+                        </nz-form-control>
+                    </nz-form-item>
+                </div>
+    
+                <div class="col-md-3 mx-auto mb-5">
+                    <button type="submit" class="btn w-100" style="background-color: orangered; color: white;">Submit</button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+    </nz-spin>
+
+    <button class="chat-toggle rounded" style="right: 40px; bottom: 35px; position: fixed;background-color: orangered; color: white; height: 45px; width: 46px; border-radius: 30px;" (click)="openChat()">
+        <i class="bi bi-chat" *ngIf="!chatBx"></i>
+
+        <i class="bi bi-x" *ngIf="chatBx"></i>
+    </button>
+
+    <div *ngIf="chatBx" class="chatbot bg-white rounded-lg shadow-lg" style="right: 40px; width: 350px; bottom: 115px; position: fixed; background-color: orangered; color: white;  border-radius: 15px 0px 0px 0px;">
+        <div class="text-center py-3" style="background-color: #ff5733; color: white; border-radius: 10px;">
+            <h4 class="mb-0">RentRide Chatbot</h4>
+        </div>
+    
+        <ul #chatbox class="chatbox2 py-3 my-2" style="list-style-type: none; padding: 0; height: 300px; overflow-y: auto;">
+            <li class="d-flex p-2 mb-2" 
+                ngClass="justify-content-start">
+                <div ngClass="bg-danger text-white" 
+                     class="rounded p-2" style="max-width: 75%; overflow-y: hidden;">
+                     How can i help you today ?
+                </div>
+            </li>
+            
+            <li *ngFor="let message of messages" class="d-flex p-2 mb-2" 
+                [ngClass]="{'justify-content-start': message.sender === 'bot', 'justify-content-end': message.sender === 'user'}">
+                <div [ngClass]="{'bg-danger text-white': message.sender === 'bot', 'bg-light text-dark': message.sender === 'user'}" 
+                     class="rounded p-2" style="max-width: 75%; overflow-y: hidden;">
+                    {{ message.text }}
+                </div>
+            </li>
+
+            <li *ngIf="loading" class="d-flex p-2 mb-2" 
+                ngClass="justify-content-start">
+                <div ngClass="bg-danger text-white" 
+                     class="rounded p-2" style="max-width: 75%; overflow-y: hidden;">
+                     Thinking<span class="dots"></span>
+                </div>
+            </li>
+        </ul>
+    
+        <form class="input-group p-2" (ngSubmit)="onSubmit()">
+            <textarea [(ngModel)]="prompt" name="prompt" class="form-control" placeholder="Enter a prompt..." rows="1" style="resize: none;" required></textarea>
+            <button type="submit" class="btn" style="background-color: orangered; color: white;">Send</button>
+        </form>
+    </div>
+    
+    
+    
+    <footer class="bg-dark text-light pt-1 pb-3">
+        <div class="container text-center text-md-left">
+            <div class="row text-center text-md-left">
+    
+                <!-- Company Info -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-2 fw-bolder">RentRide</h5>
+                    <p>
+                        Your trusted partner for reliable car rentals in Colombo, Sri Lanka.
+                    </p>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-2 fw-bolder">Quick Links</h5>
+                    <p>
+                        <a href="/customer/home" class="text-light" style="text-decoration: none;">Home</a>
+                    </p>
+                    <p>
+                        <a href="/customer/cars" class="text-light" style="text-decoration: none;">Cars</a>
+                    </p>
+                    <p>
+                        <a href="/customer/my-bookings" class="text-light" style="text-decoration: none;">My Bookings</a>
+                    </p>
+                </div>
+    
+                <!-- Contact -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-2 fw-bolder">Contact</h5>
+                    <p>
+                        Colombo, Sri Lanka
+                    </p>
+                    <p>
+                        {{ 'rentride2024@gmail.com' }}
+                    </p>
+                    <p>
+                        0770891499
+                    </p>
+                </div>
+            </div>
+    
+            <hr style="height: 1px; margin: 0px;"/>
+
+            <!-- Social Media -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 col-lg-8 col-xl-7 mt-1">
+                    <p class="text-center text-md-left">
+                        Follow us on:
+                    </p>
+                    <div class="text-center" style="color: white;">
+                        <a href="#" class="text-light me-4">
+                            <i class="bi bi-facebook" style="color: white;"></i>
+                        </a>
+                        <a href="#" class="text-light me-4">
+                            <i class="bi bi-twitter"></i>
+                        </a>
+                        <a href="#" class="text-light me-4">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                        <a href="#" class="text-light me-4">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="text-light me-4">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="row mt-4">
+                <div class="col-md-12 text-center">
+                    <p class="mb-0">&copy; 2024 RentRide. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+        
+    </div>
+</div>

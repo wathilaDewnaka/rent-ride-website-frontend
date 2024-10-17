@@ -1,0 +1,40 @@
+<div class="container mt-5" style="margin-top: 130px !important;">
+  <nz-spin [nzSpinning]="isSpinning" nzSize="large" nzTip="Working...">
+    <div class="card shadow-lg p-5">
+      <h2 class="text-center mb-4">Change User to Admin</h2>
+      <form nz-form [formGroup]="AdminPost" (ngSubmit)="adminPost()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <nz-form-item>
+              <nz-form-control nzHasFeedback nzErrorTip="This Input Is Required!">
+                <input nz-input placeholder="Email" formControlName="email" class="form-control" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        
+        <button nz-button class="btn btn-primary w-100 mt-4 h-50" nzType="primary" type="submit" style="background: orangered; color: white;">
+          Register Admin
+        </button>
+      </form>
+
+
+      <h2 class="text-center mb-5 mt-5">Remove A User</h2>
+      <form nz-form [formGroup]="AdminDelete" (ngSubmit)="adminDelete()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <nz-form-item>
+              <nz-form-control nzHasFeedback nzErrorTip="This Input Is Required!">
+                <input nz-input placeholder="Email" formControlName="email" class="form-control" />
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>  
+        
+        <button nz-button class="btn btn-primary w-100 mt-4 h-50" nzType="primary" type="submit" style="background: orangered; color: white;">
+          Delete Account
+        </button>
+      </form>
+    </div>
+  </nz-spin>
+</div>

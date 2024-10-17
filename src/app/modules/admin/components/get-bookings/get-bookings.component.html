@@ -1,0 +1,53 @@
+<div class="container mt-4" style="margin-top: 130px !important;"> 
+  <!-- Spinner -->
+  <div class="d-flex justify-content-center my-4" *ngIf="isSpinning">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <h2 class="fw-bolder text-center mb-4">Booking Requests Manage</h2>
+
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th style="font-weight: bolder; color: #003973;">ID</th>
+          <th style="font-weight: bolder; color: #003973;">Car ID</th>
+          <th style="font-weight: bolder; color: #003973;">Username</th>
+          <th style="font-weight: bolder; color: #003973;">Email</th>
+          <th style="font-weight: bolder; color: #003973;">From</th>
+          <th style="font-weight: bolder; color: #003973;">To</th>
+          <th style="font-weight: bolder; color: #003973;">Days</th>
+          <th style="font-weight: bolder; color: #003973;">Price</th>
+          <th style="font-weight: bolder; color: #003973;">Status</th>
+          <th style="font-weight: bolder; color: #003973;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>{{ booking.id }}</td>
+          <td>{{ booking.carId }}</td>
+          <td>{{ booking.username }}</td>
+          <td>{{ booking.email }}</td>
+          <td>{{ booking.fromDate | date: 'MMM d, y' }}</td>
+          <td>{{ booking.toDate | date: 'MMM d, y' }}</td>
+          <td>{{ booking.dates }}</td>
+          <td>{{ booking.price }}</td>
+          <td>
+            <strong>
+              {{ booking.bookACarStatus }}
+            </strong>
+          </td>
+          <td>
+            <span *ngIf="booking.bookACarStatus === 'PENDING'">
+              <button class="btn btn-primary btn-sm me-2" (click)="changeBookingStatus(booking.id, 'Approve')">Approve</button>
+              <button class="btn btn-danger btn-sm" (click)="changeBookingStatus(booking.id, 'Reject')">Reject</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

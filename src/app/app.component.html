@@ -1,0 +1,82 @@
+<!-- Guest Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed top-0 w-100" style="z-index: 10;" *ngIf="!isAdminLoggedIn && !isCustomerLoggedIn">
+  <div class="container-fluid p-2">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/logo-no-background.png" alt="Logo" style="width: 80px; height: 50px;"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0 d-flex justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/register" routerLinkActive="active-link">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" routerLinkActive="active-link">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Admin Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed top-0 w-100" style="z-index: 10;" *ngIf="isAdminLoggedIn">
+  <div class="container-fluid p-2">
+    <a class="navbar-brand fw-bold" routerLink="/admin/bookings">
+      <img src="assets/logo-no-background.png" alt="Logo" style="width: 80px; height: 50px;"/> Admin
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScrollAdmin" aria-controls="navbarScrollAdmin" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScrollAdmin">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0 d-flex justify-content-center">
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLink="/admin/dashboard" routerLinkActive="active-link">Cars</a>
+        </li>
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLink="/admin/bookings" routerLinkActive="active-link">Bookings</a>
+        </li>
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLink="/admin/car" routerLinkActive="active-link">Post Car</a>
+        </li>
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLink="/admin/admin" routerLinkActive="active-link">User Panel</a>
+        </li>
+        <li class="nav-item mx-auto my-2 my-md-0">
+          <a class="nav-link active button" (click)="logout()">Logout</a>
+        </li>        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Customer Navbar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed top-0 w-100" style="z-index: 10;" *ngIf="isCustomerLoggedIn">
+  <div class="container-fluid p-2">
+    <a class="navbar-brand" routerLink="/customer/my-bookings">
+      <img src="assets/logo-no-background.png" alt="Logo" style="width: 80px; height: 50px;"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScrollCustomer" aria-controls="navbarScrollCustomer" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScrollCustomer">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0 d-flex justify-content-center">
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLink="/customer/home" routerLinkActive="active-link">Home</a>
+        </li>
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLink="/customer/cars" routerLinkActive="active-link">Cars</a>
+        </li>
+        <li class="nav-item text-center">
+          <a class="nav-link" routerLink="/customer/my-bookings" routerLinkActive="active-link">My Bookings</a>
+        </li>
+        <li class="nav-item mx-auto my-2 my-md-0">
+          <a class="nav-link active button" (click)="logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

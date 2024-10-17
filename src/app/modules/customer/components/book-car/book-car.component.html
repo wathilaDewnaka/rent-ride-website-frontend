@@ -1,0 +1,183 @@
+<div class="container mt-5 min-vh-100" *ngIf="car" style="padding-top: 70px; padding-bottom: 30px;">
+  <!-- Car Display Section -->
+  <div class="card mb-4 shadow p-4 rounded d-flex flex-column flex-md-row" style="background-color:#f8f9fa;">
+    <div class="d-flex justify-content-center mb-3 mb-md-0">
+      <img
+        class="img-fluid rounded"
+        [src]="processedImage"
+        alt="{{ car.brand }} {{ car.name }}"
+        style="height: 240px; max-width: 400px; width: 100%;"
+      />
+    </div>
+    <div class="d-flex flex-column justify-content-center p-3">
+      <h2 class="fw-bold">{{ car.brand }} - {{ car.name }}</h2>
+      <p class="text-muted">{{ car.description }}</p>
+      <div>
+        <h5>
+          <span>Car ID:</span> <b> - {{ car.id }}</b><br />
+          <span>Price:</span> <b> - ${{ car.price }}</b><br />
+          <span>Color:</span> <b> - {{ car.color }}</b><br />
+          <span>Transmission:</span> <b> - {{ car.transmission }}</b><br />
+          <span>Type:</span> <b> - {{ car.type }}</b><br />
+          <span>Year:</span> <b> - {{ car.year }}</b>
+        </h5>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Booking Form -->
+  <nz-spin [nzSpinning]="isSpinning" [nzSize]="'large'" nzTip="Processing...">
+    <form [formGroup]="validateForm" (ngSubmit)="bookACar()" class="shadow p-4 rounded" style="background-color:#f8f9fa;">
+      <h3 class="text-center fw-bold mb-3">Enter the details to book with <span style="color: orangered;">RentRide</span></h3>
+      <div class="d-flex flex-row mb-3">
+        <div class="flex-fill px-2">
+          <label for="name" class="form-label">Full Name</label>
+          <input
+            type="text"
+            formControlName="name"
+            id="name"
+            class="form-control"
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+        <div class="flex-fill px-2">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input
+            type="text"
+            formControlName="phone"
+            id="phone"
+            class="form-control"
+            placeholder="Enter your phone number"
+            required
+          />
+        </div>
+      </div>
+      <div class="mb-3 px-2">
+        <label for="address" class="form-label">Address</label>
+        <textarea
+          formControlName="address"
+          id="address"
+          class="form-control"
+          rows="2"
+          placeholder="Enter your address"
+        ></textarea>
+      </div>
+      <div class="d-flex flex-row mb-3">
+        <div class="flex-fill px-2">
+          <nz-date-picker
+            formControlName="fromDate"
+            class="w-100"
+            nzFormat="dd-MM-yyyy"
+            nzPlaceHolder="From Date"
+            [nzDisabledDate]="disablePastDates"
+            required
+          ></nz-date-picker>
+        </div>
+        <div class="flex-fill px-2">
+          <nz-date-picker
+            formControlName="toDate"
+            class="w-100"
+            nzFormat="dd-MM-yyyy"
+            nzPlaceHolder="To Date"
+            [nzDisabledDate]="disablePastDates"
+            required
+          ></nz-date-picker>
+        </div>
+      </div>
+      <div class="px-2 mb-3">
+        <input
+          class="form-check-input mr-3"
+          type="checkbox"
+          formControlName="terms"
+          id="terms"
+          required
+        />
+        <label class="form-check-label pl-3" for="terms" style="margin-left: 10px;">
+          I agree to the <a href="/terms-and-conditions" target="_blank" style="color: orangered;">RentRide terms and conditions</a>
+        </label>
+      </div>
+      <div class="d-grid gap-2 mt-4">
+        <button class="btn pb-4" style="background-color: orangered; color: white;" nz-button nzType="primary" type="submit">Book Car</button>
+      </div>
+    </form>
+  </nz-spin>
+</div>
+<footer class="bg-dark text-light pt-1 pb-3 mt-auto">
+  <div class="container text-center text-md-left">
+      <div class="row text-center text-md-left">
+
+          <!-- Company Info -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+              <h5 class="text-uppercase mb-2 fw-bolder">RentRide</h5>
+              <p>
+                  Your trusted partner for reliable car rentals in Colombo, Sri Lanka.
+              </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h5 class="text-uppercase mb-2 fw-bolder">Quick Links</h5>
+              <p>
+                  <a href="/customer/home" class="text-light" style="text-decoration: none;">Home</a>
+              </p>
+              <p>
+                  <a href="/customer/cars" class="text-light" style="text-decoration: none;">Cars</a>
+              </p>
+              <p>
+                  <a href="/customer/my-bookings" class="text-light" style="text-decoration: none;">My Bookings</a>
+              </p>
+          </div>
+
+          <!-- Contact -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+              <h5 class="text-uppercase mb-2 fw-bolder">Contact</h5>
+              <p>
+                  Colombo, Sri Lanka
+              </p>
+              <p>
+                  {{ 'rentride2024@gmail.com' }}
+              </p>
+              <p>
+                  0770891499
+              </p>
+          </div>
+      </div>
+
+      <hr style="height: 1px; margin: 0px;"/>
+
+      <!-- Social Media -->
+      <div class="row d-flex justify-content-center">
+          <div class="col-md-8 col-lg-8 col-xl-7 mt-1">
+              <p class="text-center text-md-left">
+                  Follow us on:
+              </p>
+              <div class="text-center" style="color: white;">
+                  <a href="#" class="text-light me-4">
+                      <i class="bi bi-facebook" style="color: white;"></i>
+                  </a>
+                  <a href="#" class="text-light me-4">
+                      <i class="bi bi-twitter"></i>
+                  </a>
+                  <a href="#" class="text-light me-4">
+                      <i class="bi bi-whatsapp"></i>
+                  </a>
+                  <a href="#" class="text-light me-4">
+                      <i class="bi bi-instagram"></i>
+                  </a>
+                  <a href="#" class="text-light me-4">
+                      <i class="bi bi-linkedin"></i>
+                  </a>
+              </div>
+          </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="row mt-4">
+          <div class="col-md-12 text-center">
+              <p class="mb-0">&copy; 2024 RentRide. All Rights Reserved.</p>
+          </div>
+      </div>
+  </div>
+</footer>
